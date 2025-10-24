@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small utilities for the animated canvas overlay */
+#bg-animation {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* gradient edge glow */
+.glow-border {
+  position: relative;
+  overflow: visible;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.glow-border::after{
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(14,165,233,0.9), rgba(167,139,250,0.9));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .3s ease, transform .3s ease;
+  pointer-events: none;
+}
+.glow-border:hover::after { opacity: 1; transform: scale(1.02); }
